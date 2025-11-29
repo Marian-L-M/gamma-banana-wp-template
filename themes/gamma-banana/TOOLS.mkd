@@ -1,0 +1,53 @@
+# Wordpress development
+
+## CSS
+
+### Clip paths - Clippy by Bennett Feely
+
+https://bennettfeely.com/clippy/
+
+## JS
+
+### Wordpress scripts
+
+```
+npm install @wordpress/scripts --save-dev
+```
+
+https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/
+
+### Galleries/Sliders
+
+- Light weight slider
+  https://glidejs.com/
+
+- High feature slide
+  https://splidejs.com/
+
+# Plugins
+
+## Always installed Plugins
+
+### ACF
+
+- Because you would be crazy to make them yourself.
+
+## Special purpose Plugins
+
+### Regenerate Thumbnails by Alex Mills
+
+- Force regeneration of thumbnails when adding size
+- https://wordpress.org/plugins/regenerate-thumbnails/
+
+### Manual Image Crop by Tomasz Sita
+
+- Manually crop uploaded images (Generated sizes specific)
+- https://wordpress.org/plugins/manual-image-crop/
+
+# Other
+
+## Image handling
+
+### Webp converter
+
+https://anywebp.com/

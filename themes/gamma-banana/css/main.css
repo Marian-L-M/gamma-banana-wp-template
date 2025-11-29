@@ -1,0 +1,130 @@
+/* Default components */
+
+/* Defaults */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.4rem;
+  z-index: 1000;
+  background-color: var(--main-white);
+  nav,
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  li a {
+    font-size: clamp(1.6rem, 2vw, 2rem);
+    color: var(--main-text-color);
+    padding: 0 1em;
+  }
+}
+
+#breadcrumbs {
+  display: flex;
+  gap: 1rem;
+  span,
+  a {
+    padding: 0.5rem 1rem;
+
+    border: 1px solid var(--main-black);
+    color: var(--main-black);
+    line-height: 100%;
+  }
+}
+
+/* Elements */
+.btn {
+  box-sizing: border-box;
+}
+
+.btn__rm {
+  &::before {
+    content: "▶︎";
+    position: relative;
+    z-index: 10;
+    margin-right: 0.2em;
+  }
+}
+
+.btn__anim-opac {
+  opacity: 1;
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.btn__anim-bar {
+  position: relative;
+  box-sizing: border-box;
+  width: fit-content;
+  padding: 0 0.6em;
+  .anim-inner {
+    position: relative;
+    z-index: 10;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+
+    background-color: var(--primary-color);
+    transition: width 0.15s ease-in-out;
+  }
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+/* Sections */
+.title-banner {
+  position: relative;
+  aspect-ratio: 2 / 3;
+
+  width: 100%;
+
+  /* color: var(--main-bg-color); */
+  picture,
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+}
+
+/* Wordpress */
+nav {
+  li {
+    &.current_page_item a {
+      color: red;
+    }
+  }
+}
+/* Small */
+/* Medium */
+@media screen and (min-width: 768px) {
+  .title-banner {
+    aspect-ratio: unset;
+    height: clamp(24rem, 40vw, 40rem);
+  }
+}
+/* Large */
+/* XL */
+/* XXL */

@@ -2,6 +2,7 @@
 /plugins
 /uploads
 /upgrade
-/themes
+/themes/*
 !/themes/gamma-banana
+!/themes/gamma-banana/**
 /index.php
