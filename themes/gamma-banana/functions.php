@@ -28,6 +28,12 @@ function theme_features()
 
 add_action("after_setup_theme", "theme_features");
 
+// Theme scripts
+function gamma_banana_enqueue_scripts() {
+    wp_enqueue_script('gamma-banana-modules',get_theme_file_uri('/build/modules.js') , array('jquery'), '1.0', true);
+}
+add_action('wp_enqueue_scripts', 'gamma_banana_enqueue_scripts');
+
 // Theme archive settings
 function filter_pre_get_posts($query)
 {
