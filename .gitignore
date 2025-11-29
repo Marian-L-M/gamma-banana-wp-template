@@ -1,4 +1,8 @@
 .DS_Store
+.htaccess
+.env
+debug.log
+error_log
 /node_modules
 /plugins
 /uploads
