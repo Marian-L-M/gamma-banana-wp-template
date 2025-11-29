@@ -1,0 +1,7 @@
+/node_modules
+/plugins
+/uploads
+/upgrade
+/themes
+!/themes/gamma-banana
+/index.php

@@ -1,0 +1,33 @@
+{
+  "name": "gamma-banana-wp-dev-template",
+  "version": "1.0.0",
+  "description": "A starter template for wordpress development",
+  "homepage": "https://github.com/Marian-L-M/gamma-banana-wp-template#readme",
+  "bugs": {
+    "url": "https://github.com/Marian-L-M/gamma-banana-wp-template/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marian-L-M/gamma-banana-wp-template.git"
+  },
+  "license": "ISC",
+  "author": "Marian Maschke",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "dev": "wp-scripts start",
+    "devFast": "wp-scripts start",
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.24.0",
+    "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "@glidejs/glide": "^3.7.1",
+    "@wordpress/scripts": "^31.1.0",
+    "axios": "^1.13.2"
+  }
+}
