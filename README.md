@@ -1,7 +1,6 @@
 # cns-project-page
 
 ## Getting started
-
 1. Insert an image named ogp.png into /img as your main OGP image
 
 ## CSS
