@@ -10,7 +10,7 @@ $pagination_args = [
 ];
 ?>
 <main class="fx-col-center" id="page-main">
-    <?php generate_page_banner($page_title, "/common/banner/banner-top.webp"); ?>
+    <?php generate_page_banner("/common/banner/banner-top.webp", $page_title); ?>
     <div class="pv-half" id="layout-wrapper">
         <div class="col col__side col__left">
             <?php echo get_sidebar("secondary"); ?>
