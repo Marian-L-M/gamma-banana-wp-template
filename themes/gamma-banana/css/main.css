@@ -43,9 +43,105 @@ header {
   }
 }
 
+#search-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .content {
+    position: relative;
+    z-index: 10;
+    background-color: var(--main-white);
+    width: var(--breakpoint-sm);
+    max-width: 92%;
+    height: var(--breakpoint-md);
+    max-height: 92%;
+    overflow-y: scroll;
+  }
+  &.search-overlay__active {
+    display: flex;
+  }
+}
+
+.search-overlay__content {
+  width: 100%;
+}
+.search-overlay__top {
+  background-color: var(--light-grey);
+  text-align: center;
+  padding: 0.4em 1em;
+}
+.search-overlay__main {
+  input {
+    width: 100%;
+    height: 5rem;
+    padding: 1rem;
+  }
+}
+
+.close__wrapper {
+        display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: hsla(0, 0%, 0%, 0.25);
+    z-index: 1;
+  }
+
+.close__button {
+    position: absolute;
+    top: 2vw;
+    right: 2vw;
+    width: 4rem;
+    height: 4rem;
+    &::after,
+    &::before {
+      content: "";
+      display: block;
+      height: 4px;
+      width: 100%;
+
+      position: absolute;
+      
+      background-color: var(--main-black);
+      border-radius: 2px;
+      transform-origin: center;
+    }
+    &::after {
+      transform: rotate(45deg);
+    }
+    &::before {
+      transform: rotate(-45deg);
+    }
+  }
+
 /* Elements */
+button {
+  appearance: none;
+  background-color: unset;
+  border: unset;
+  width: fit-content;
+  height: fit-content;
+}
+
 .btn {
   box-sizing: border-box;
+}
+.btn__icon {
+  vertical-align: middle;
+  svg {
+    width: 1em;
+    height: 1em;
+  }
 }
 
 .btn__rm {

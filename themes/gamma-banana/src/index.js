@@ -1,3 +1,5 @@
 import Search from "./modules/Search";
 
-const search = new Search();
+document.addEventListener("DOMContentLoaded", () => {
+    new Search();
+});

@@ -83,6 +83,28 @@ li {
 ========Utilities=========
 ==========================
 */
+/* Font Sizing */
+.text-sm {
+  font-size: 0.875em;
+  line-height: 1.25em;
+}
+.text-md {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+.text-lg {
+  font-size: 1.125em;
+  line-height: 1.75em;
+}
+.text-xl {
+  font-size: 1.25em;
+  line-height: 2em;
+}
+.text-2xl {
+  font-size: 1.5em;
+  line-height: 2.5em;
+}
+
 /* Text */
 .text-center {
   text-align: center;
@@ -93,6 +115,9 @@ li {
 }
 .text-white {
   color: var(--main-white);
+}
+.text-main {
+  color: var(--main-text-color);
 }
 
 /* Headlines */
@@ -350,6 +375,21 @@ li {
   padding-right: 2em;
 }
 
+/* Styling */
+/* Rounding */
+.rounded-sm {
+  border-radius: 0.5rem;
+}
+.rounded-md {
+  border-radius: 1rem;
+}
+.rounded-lg {
+  border-radius: 2rem;
+}
+.rounded-full {
+  border-radius: 50%;
+}
+
 /* Structure */
 .container {
   box-sizing: border-box;
@@ -396,6 +436,7 @@ li {
 }
 
 /* Set user contents defaults */
+/* Editor fonts */
 .generic-contents {
   h1,
   h2,

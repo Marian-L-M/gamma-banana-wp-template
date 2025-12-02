@@ -14,6 +14,7 @@
         <?php wp_nav_menu([
           "theme_location" => "headerMenuLocation",
         ]); ?>
+        <?php echo get_template_part("partials/button", "toggle-search"); ?>
     </nav>
 </header>
 
