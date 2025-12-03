@@ -16,6 +16,7 @@ $pagination_args = [
             <?php echo get_sidebar("secondary"); ?>
         </div>
         <div class="col col__center fx-col-center gap-half">
+            <input type="text">
             <!-- Current -->
             <div class="container container__full__pc posts posts__list" id="contents">
                 <h2>Current Guides</h2>

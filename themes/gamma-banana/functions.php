@@ -8,6 +8,7 @@ function load_project_files()
   wp_enqueue_style("styles", get_stylesheet_uri());
   wp_enqueue_style("page_setup", get_template_directory_uri() . "/css/setup.css");
   wp_enqueue_style("main_styles", get_template_directory_uri() . "/css/main.css");
+  wp_enqueue_style("animation", get_template_directory_uri() . "/css/animation.css");
   if (is_page("samples")) {
     wp_enqueue_style("samples");
   }

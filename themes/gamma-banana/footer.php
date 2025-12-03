@@ -14,10 +14,11 @@
         </div>
         <div class="search-overlay__content search-overlay__main p-1">
             <div class="fx-row-center gap-1 w100">
-                <input type="text" class="search-term" id="search-term" placeholder="Keyword" aria-hidden="true">
+                <input type="text" class="search-term" id="search-term" placeholder="Keyword">
                 <button type="submit"
                     class="btn btn__icon text-xl fx-content-center p-r1 rounded-sm"><?php generate_icon("search") ?></button>
             </div>
+            <div id="search-overlay-results"></div>
         </div>
         <div class="search-overlay__content search-overlay__bottom"></div>
     </div>
