@@ -12,6 +12,14 @@ function load_project_files()
   if (is_page("samples")) {
     wp_enqueue_style("samples");
   }
+
+  // Register Scripts
+  // Load Scripts
+  // Gamma banana theme setup
+  wp_enqueue_script('gamma-banana-modules',get_theme_file_uri('/build/index.js') , array('jquery'), '1.0', true);
+  wp_localize_script('gamma-banana-modules', 'gbThemeData', array(
+    'root_url' => get_site_url(),
+  ));
 }
 add_action("wp_enqueue_scripts", "load_project_files");
 
@@ -28,12 +36,6 @@ function theme_features()
 }
 
 add_action("after_setup_theme", "theme_features");
-
-// Theme scripts
-function gamma_banana_enqueue_scripts() {
-    wp_enqueue_script('gamma-banana-modules',get_theme_file_uri('/build/index.js') , array('jquery'), '1.0', true);
-}
-add_action('wp_enqueue_scripts', 'gamma_banana_enqueue_scripts');
 
 // Theme archive settings
 function filter_pre_get_posts($query)
