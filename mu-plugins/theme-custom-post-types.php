@@ -77,5 +77,23 @@ function theme_custom_post_types()
     ],
     "menu_icon" => "dashicons-welcome-learn-more",
   ]);
+  // Wikis
+  register_post_type("wikis", [
+    "supports" => ["title", "editor", "excerpt", "thumbnail"],
+    "rewrite" => [
+      "slug" => "wikis",
+    ],
+    "has_archive" => true,
+    "public" => true,
+    "show_in_rest" => true,
+    "labels" => [
+      "name" => "Wikis",
+      "add_new_item" => "Add new wiki",
+      "edit_item" => "Edit guide",
+      "all_items" => "Wikis",
+      "singular_name" => "Wiki",
+    ],
+    "menu_icon" => "dashicons-media-document",
+  ]);
 }
 add_action("init", "theme_custom_post_types");
