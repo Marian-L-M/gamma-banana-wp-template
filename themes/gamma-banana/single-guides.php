@@ -19,7 +19,7 @@ $parent_id = wp_get_post_parent_id(get_the_ID());
                     // Metabox
                     echo get_template_part("templates/post", "metabox", ["parent_id" => $parent_id]);
                     // Post contents
-                    echo get_the_content();
+                    the_content();
                   endwhile;
                 endif; ?>
             </div>

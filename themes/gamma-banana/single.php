@@ -31,7 +31,7 @@ $page_title = get_the_title();
                     // Metabox
                     echo get_template_part("templates/post", "metabox", ["parent_id" => $parent_id]);
                     // Post contents
-                    echo get_the_content();
+                    the_content();
                   endwhile;
                 endif; ?>
             </div>

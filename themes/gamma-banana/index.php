@@ -19,7 +19,7 @@ $pagination_args = [
                 <?php
                 while (have_posts()):
                   the_post(); ?>
-                <h3><a href="<?php echo get_the_permalink(); ?>"></a><?php echo get_the_title(); ?></h3>
+                <h3><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
                 <?php
                 endwhile;
                 the_posts_pagination($pagination_args);
