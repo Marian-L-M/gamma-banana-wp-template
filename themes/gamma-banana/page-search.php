@@ -23,7 +23,7 @@ $page_title = get_the_title();
         <div class="col col__side col__left">
             <?php echo get_sidebar("secondary"); ?>
         </div>
-        <div class="col col__center fx-col-center">
+        <div class="col col__center fx-col-center gap-half">
             <div class="container container__full__pc generic-contents" id="contents">
                 <?php if (have_posts()):
                   while (have_posts()):
@@ -34,6 +34,17 @@ $page_title = get_the_title();
                     the_content();
                   endwhile;
                 endif; ?>
+            </div>
+            <div class="container  container__lg container_form" id="search-form-container">
+                <form method="get" action="<?php echo esc_url(get_site_url())?>" class="search-form" id="search-form">
+                    <div class="search-form-group">
+                        <label for="input-search">Perform a new search:</label>
+                        <div class="search-form-input-row">
+                            <input placeholder="What are you looking for?" type="search" name="s" id="input-search">
+                            <button type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="col col__side col__right">

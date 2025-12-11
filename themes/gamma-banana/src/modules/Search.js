@@ -126,7 +126,8 @@ class Search {
         }
         this.previousValue = this.searchField.value
     }
-    openOverlay() {
+    openOverlay(e) {
+        e.preventDefault()
         this.searchOverlay.classList.add("search-overlay__active")
         this.searchField.focus()
         this.isOverlayOpen = true
