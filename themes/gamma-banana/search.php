@@ -9,9 +9,9 @@ $pagination_args = [
   "next_text" => __("Next"),
 ];
 ?>
-<main class="fx-col-center" id="page-main">
+<main class="fx-col-center gap-2" id="page-main">
     <?php generate_page_banner("/common/banner/banner-top.webp", $page_title, $page_subtitle); ?>
-    <div id="layout-wrapper">
+    <div class="gap-1" id="layout-wrapper">
         <div class="col col__side col__left">
             <?php echo get_sidebar("secondary"); ?>
         </div>
@@ -19,9 +19,8 @@ $pagination_args = [
             <div class="container container__full__pc posts posts__list" id="contents">
                 <?php
                 while (have_posts()):
-                  the_post(); ?>
-                <h3><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
-                <?php
+                  the_post(); 
+                  echo get_template_part("templates/post", "list-dynamic");
                 endwhile;
                 the_posts_pagination($pagination_args);
                 ?>
