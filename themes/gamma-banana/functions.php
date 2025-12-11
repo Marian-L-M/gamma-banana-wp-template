@@ -6,16 +6,18 @@ require get_theme_file_path("/functions/search-route.php");
 // Load CSS&JS
 function load_project_files()
 {
-  // Register styles
+  // Register optional styles
   wp_register_style("samples", get_template_directory_uri() . "/css/samples.css");
-  // Load styles
+
+  // Register & load theme required styles
   wp_enqueue_style("styles", get_stylesheet_uri());
-  wp_enqueue_style("page_setup", get_template_directory_uri() . "/css/setup.css");
-  wp_enqueue_style("main_styles", get_template_directory_uri() . "/css/main.css");
+  wp_enqueue_style("page_setup", get_template_directory_uri() . "/css/setup.css"); // CSS resets etc
+  wp_enqueue_style("main_styles", get_template_directory_uri() . "/css/main.css"); // Structural css for template
+  wp_enqueue_style("utilities", get_template_directory_uri() . "/css/utilities.css"); // utility css classes
   wp_enqueue_style("animation", get_template_directory_uri() . "/css/animation.css");
-  if (is_page("samples")) {
-    wp_enqueue_style("samples");
-  }
+
+  // Load optional/specific styles
+  wp_enqueue_style("samples"); // Sample styling, delete if you want to customize
 
   // Register Scripts
   // Load Scripts

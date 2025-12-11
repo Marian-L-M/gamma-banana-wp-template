@@ -1,0 +1,312 @@
+/* 
+==========================
+========Utilities=========
+==========================
+*/
+/* Font Sizing */
+.text-sm {
+  font-size: 0.875em;
+  line-height: 1.25em;
+}
+.text-md {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+.text-lg {
+  font-size: 1.125em;
+  line-height: 1.75em;
+}
+.text-xl {
+  font-size: 1.25em;
+  line-height: 2em;
+}
+.text-2xl {
+  font-size: 1.5em;
+  line-height: 2.5em;
+}
+
+/* Text */
+.text-center {
+  text-align: center;
+}
+
+.text-black {
+  color: var(--main-black);
+}
+.text-white {
+  color: var(--main-white);
+}
+.text-main {
+  color: var(--main-text-color);
+}
+
+/* Headlines */
+.headline {
+  font-family: Tahoma, var(--font-st);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 140%;
+  text-transform: uppercase;
+}
+
+.headline__small {
+  font-size: 1.25em;
+}
+.headline__medium {
+  font-size: 1.5em;
+}
+.headline__large {
+  font-size: 2em;
+}
+
+/* Sizing */
+.w50 {
+  width: 50%;
+}
+.w100 {
+  width: 100%;
+}
+/* Layout */
+.fx-col {
+  display: flex;
+  flex-direction: column;
+}
+.fx-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.fx-content-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.fx-row {
+  display: flex;
+  flex-direction: row;
+}
+.fx-row-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.fx-row-end {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+}
+
+.gap-1 {
+  gap: 1em;
+}
+.gap-2 {
+  gap: 2em;
+}
+.gap-st {
+  gap: var(--spacing-st);
+}
+.gap-half {
+  gap: var(--spacing-half);
+}
+
+/* Margin */
+.m-auto {
+  margin: auto;
+}
+.mv-auto {
+  margin: auto 0;
+}
+.mv-r1 {
+  margin: 1rem inherit;
+}
+.mv-1 {
+  margin: 1em inherit;
+}
+.mv-2 {
+  margin: 2em inherit;
+}
+.mv-st {
+  margin: var(--spacing-st) inherit;
+}
+.mv-half {
+  margin: var(--spacing-half) inherit;
+}
+.mh-auto {
+  margin: 0 auto;
+}
+.mh-r1 {
+  margin: inherit 1rem;
+}
+.mh-1 {
+  margin: inherit 1em;
+}
+.mh-2 {
+  margin: inherit 2em;
+}
+.mh-st {
+  margin: inherit var(--spacing-st);
+}
+.mh-half {
+  margin: inherit var(--spacing-half);
+}
+.mt-r1 {
+  margin-top: 1rem;
+}
+.mt-1 {
+  margin-top: 1em;
+}
+.mt-2 {
+  margin-top: 2em;
+}
+.mt-st {
+  margin-top: var(--spacing-st);
+}
+.mt-half {
+  margin-top: var(--spacing-half);
+}
+.mb-r1 {
+  margin-bottom: 1rem;
+}
+.mb-1 {
+  margin-bottom: 1em;
+}
+.mb-2 {
+  margin-bottom: 2em;
+}
+.mb-st {
+  margin-bottom: var(--spacing-st);
+}
+.mb-half {
+  margin-bottom: var(--spacing-half);
+}
+.ml-r1 {
+  margin-left: 1rem;
+}
+.ml-1 {
+  margin-left: 1em;
+}
+.ml-2 {
+  margin-left: 2em;
+}
+.ml-st {
+  margin-left: var(--spacing-st);
+}
+.ml-half {
+  margin-left: var(--spacing-half);
+}
+.mr-r1 {
+  margin-right: 1rem;
+}
+.mr-1 {
+  margin-right: 1em;
+}
+.mr-2 {
+  margin-right: 2em;
+}
+.mr-st {
+  margin-right: var(--spacing-st);
+}
+.mr-half {
+  margin-right: var(--spacing-half);
+}
+/* Padding */
+.p-r1 {
+  padding: 1rem;
+}
+.p-1 {
+  padding: 1em;
+}
+.p-2 {
+  padding: 1em;
+}
+.pv-r1 {
+  padding: 1rem 0;
+}
+.pv-1 {
+  padding: 1em 0;
+}
+.pv-2 {
+  padding: 2em 0;
+}
+.pv-st {
+  padding: var(--spacing-st) 0;
+}
+.pv-half {
+  padding: var(--spacing-half) 0;
+}
+.ph-r1 {
+  padding: 0 1rem;
+}
+.ph-1 {
+  padding: 0 1em;
+}
+.ph-2 {
+  padding: 0 2em;
+}
+.pt-r1 {
+  padding-top: 1rem;
+}
+.pt-1 {
+  padding-top: 1em;
+}
+.pt-2 {
+  padding-top: 2em;
+}
+
+.pt-st {
+  padding-top: var(--spacing-st);
+}
+.pt-half {
+  padding-top: var(--spacing-half);
+}
+.pb-r1 {
+  padding-bottom: 1rem;
+}
+.pb-1 {
+  padding-bottom: 1em;
+}
+.pb-2 {
+  padding-bottom: 2em;
+}
+.pb-st {
+  padding-bottom: var(--spacing-st);
+}
+.pb-half {
+  padding-bottom: var(--spacing-half);
+}
+.pl-r1 {
+  padding-left: 1rem;
+}
+.pl-1 {
+  padding-left: 1em;
+}
+.pl-2 {
+  padding-left: 2em;
+}
+.pr-r1 {
+  padding-right: 1rem;
+}
+.pr-1 {
+  padding-right: 1em;
+}
+.pr-2 {
+  padding-right: 2em;
+}
+
+/* Styling */
+/* Rounding */
+.rounded-sm {
+  border-radius: 0.5rem;
+}
+.rounded-md {
+  border-radius: 1rem;
+}
+.rounded-lg {
+  border-radius: 2rem;
+}
+.rounded-full {
+  border-radius: 50%;
+}
+

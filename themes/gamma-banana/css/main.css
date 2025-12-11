@@ -5,8 +5,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-
-  box-sizing: border-box;
+  
   width: 100%;
   padding: 1rem 2rem;
 
@@ -124,18 +123,47 @@ header {
     }
   }
 
-/* Elements */
-button {
-  appearance: none;
-  background-color: unset;
-  border: unset;
-  width: fit-content;
-  height: fit-content;
+/* Layout */
+.posts__list,
+.post-list-item,
+.metabox {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.btn {
-  box-sizing: border-box;
+.post-list-item {
+  width: 100%;
+  
+  padding: 1rem;
+  border-bottom: 1px solid lightgrey;
+  a {
+    font-weight: bold;
+    color: var(--main-text-color);
+  }
 }
+
+#layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 192rem;
+  margin: auto;
+  .col {
+    flex: 1;
+    &.col__center {
+      flex-basis: clamp(10rem, 70vw, 120rem);
+      max-width: 120rem;
+    }
+  }
+}
+
+.wrapper {
+  width: 100%;
+  
+}
+
+/* Elements */
 .btn__icon {
   vertical-align: middle;
   svg {
@@ -162,7 +190,6 @@ button {
 
 .btn__anim-bar {
   position: relative;
-  box-sizing: border-box;
   width: fit-content;
   padding: 0 0.6em;
   .anim-inner {
@@ -215,12 +242,88 @@ nav {
 }
 /* Small */
 /* Medium */
+@media screen and (max-width: 768px) {
+  #layout-wrapper {
+    &.inverse {
+      flex-direction: column-reverse;
+    }
+  }
+}
 @media screen and (min-width: 768px) {
   .title-banner {
     aspect-ratio: unset;
     height: clamp(24rem, 40vw, 40rem);
   }
+  .container {
+    width: var(--width-pc);
+    max-width: var(--breakpoint-md);
+    &.container__full__pc {
+      width: 100%;
+      max-width: 100%;
+    }
+    &.container__lg {
+      max-width: var(--breakpoint-lg);
+    }
+    &.container__xl {
+      max-width: var(--breakpoint-xl);
+    }
+  }
+  .grid__23 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid__24 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  #layout-wrapper {
+    flex-direction: row;
+  }
 }
+
+/* Structure */
+.container {
+  
+  width: var(--width-mobile);
+  max-width: var(--breakpoint-sm);
+  &__full {
+    
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.card {
+  width: 100%;
+  
+}
+
+.card__post {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid var(--light-grey);
+  padding: 1em;
+  border-radius: 0.5rem;
+  .img-container {
+    width: 100%;
+    aspect-ratio: 5 / 3;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.grid-container {
+  width: 100%;
+  
+  display: grid;
+}
+.grid__23,
+.grid__24 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 /* Large */
 /* XL */
 /* XXL */
