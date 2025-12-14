@@ -2,6 +2,8 @@
 // Setup theme
 // require get_theme_file_path("/functions/api-functions.php");
 require get_theme_file_path("/functions/search-route.php");
+require get_theme_file_path("/functions/login-settings.php");
+require get_theme_file_path("/functions/subscriber-settings.php");
 
 // Load CSS&JS
 function load_project_files()

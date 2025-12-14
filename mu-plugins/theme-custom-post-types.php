@@ -61,6 +61,8 @@ function theme_custom_post_types()
   ]);
   // Project guides
   register_post_type("guides", [
+    "capability_type" => "guide",
+    "map_meta_cap" => true,
     "supports" => ["title", "editor", "excerpt", "thumbnail"],
     "rewrite" => [
       "slug" => "guides",
@@ -79,6 +81,8 @@ function theme_custom_post_types()
   ]);
   // Wikis
   register_post_type("wikis", [
+    "capability_type" => "wiki",
+    "map_meta_cap" => true,
     "supports" => ["title", "editor", "excerpt", "thumbnail"],
     "rewrite" => [
       "slug" => "wikis",

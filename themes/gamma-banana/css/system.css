@@ -1,0 +1,12 @@
+
+body.login {
+    background-color: yellow;
+}
+
+#login h1 a {
+    background: unset;
+    color: var(--text-black);
+    height: auto;
+    width:  auto;
+    text-indent: unset;
+}
