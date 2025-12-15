@@ -7,3 +7,7 @@
 
 - setup.css for genereal page setup
 - main.css global page components etc.
+
+## Dependencies
+- tailwind css (to be implemented)
+- Alpine.js

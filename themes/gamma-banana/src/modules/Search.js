@@ -8,8 +8,6 @@ class Search {
         this.postTypes = null;
         this.fetchPostTypes();
         this.resultsContainer = document.querySelector("#search-overlay-results")
-        this.openButton = document.querySelector("#toggle-search-overlay")
-        this.closeButton = document.querySelector("#close-search-overlay")
         this.searchOverlay = document.querySelector("#search-overlay")
         this.searchField = document.querySelector("#search-term")
         this.body =
@@ -23,8 +21,6 @@ class Search {
 
     // Events
     events() {
-        this.openButton.addEventListener("click", this.openOverlay.bind(this))
-        this.closeButton.addEventListener("click", this.closeOverlay.bind(this))
         document.addEventListener('keydown', this.keyPressDispatcher.bind(this))
         this.searchField.addEventListener("keyup", this.typingLogic.bind(this))
     }
@@ -126,34 +122,22 @@ class Search {
         }
         this.previousValue = this.searchField.value
     }
-    openOverlay(e) {
-        e.preventDefault()
-        this.searchOverlay.classList.add("search-overlay__active")
-        this.searchField.focus()
-        this.isOverlayOpen = true
-    }
-    closeOverlay() {
-        this.searchOverlay.classList.remove("search-overlay__active")
-        this.isOverlayOpen = false
-    }
     initializeSearchOverlay() {
         const searchOverlay = `
-            <div id="search-overlay" class="search-overlay" aria-expanded="false">
-                <div class="content">
-                    <div class="search-overlay__content search-overlay__top">
-                        <h2>Search</h2>
-                    </div>
-                    <div class="search-overlay__content search-overlay__main p-1">
-                        <div class="fx-row-center gap-1 w100">
-                            <input type="text" class="search-term" id="search-term" placeholder="Search">
-                        </div>
-                        <div id="search-overlay-results"></div>
-                    </div>
-                    <div class="search-overlay__content search-overlay__bottom"></div>
+        <div id="search-overlay" class="search-overlay" x-show="openSearchMenu" @click.outside="openSearchMenu = false" x-cloak>
+            <div class="content">
+                <div class="search-overlay__content search-overlay__top">
+                    <h2>Search</h2>
                 </div>
-                <div class="close__wrapper" id="close-search-overlay"><span class="close__button"
-                        aria-label="close search search-overlay"></span></div>
+                <div class="search-overlay__content search-overlay__main p-1">
+                    <div class="fx-row-center gap-1 w100">
+                        <input type="text" class="search-term" id="search-term" placeholder="Search">
+                    </div>
+                    <div id="search-overlay-results"></div>
+                </div>
+                <div class="search-overlay__content search-overlay__bottom"></div>
             </div>
+        </div>
             `
         document.querySelector("body").innerHTML += searchOverlay
     }
