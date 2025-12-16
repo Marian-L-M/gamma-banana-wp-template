@@ -142,7 +142,7 @@ header {
   .col {
     flex: 1;
     &.col__center {
-      flex-basis: clamp(10rem, 70vw, 120rem);
+      flex-basis: clamp(10rem, 60vw, 120rem);
       max-width: 120rem;
     }
   }

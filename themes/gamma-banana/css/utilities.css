@@ -97,6 +97,17 @@
   flex-direction: row;
   align-items: end;
 }
+.fx-row-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.fx-row-center-between {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .gap-1 {
   gap: 1em;

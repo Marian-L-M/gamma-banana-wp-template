@@ -93,11 +93,29 @@ function theme_custom_post_types()
     "labels" => [
       "name" => "Wikis",
       "add_new_item" => "Add new wiki",
-      "edit_item" => "Edit guide",
+      "edit_item" => "Edit wiki",
       "all_items" => "Wikis",
       "singular_name" => "Wiki",
     ],
     "menu_icon" => "dashicons-media-document",
+  ]);
+  // Notess
+  register_post_type("notes", [
+    "supports" => ["title", "editor"],
+    "public" => false,
+    "rewrite" => [
+      "slug" => "notes",
+    ],
+    "show_in_rest" => true,
+    "show_ui" => true,
+    "labels" => [
+      "name" => "notes",
+      "add_new_item" => "Add new note",
+      "edit_item" => "Edit note",
+      "all_items" => "notes",
+      "singular_name" => "note",
+    ],
+    "menu_icon" => "dashicons-edit",
   ]);
 }
 add_action("init", "theme_custom_post_types");

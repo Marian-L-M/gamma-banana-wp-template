@@ -19,18 +19,45 @@ $page_title = get_the_title();
     <?php endif;
     ?>
     <!-- Contents -->
-    <div id="layout-wrapper">
+    <div class="gap-1" id="layout-wrapper">
         <div class="col col__side col__left">
             <?php echo get_sidebar("secondary"); ?>
         </div>
-        <div class="col col__center fx-col-center">
+        <div class="col col__center">
             <div class="container container__full__pc generic-contents" id="contents">
+                <ul class="fx-col gap-1" id="user-notes">
+                    <?php 
+                    $args = [
+                        "post_type" => "notes",
+                        "posts_per_page" => -1,
+                        "author" => get_current_user_id(),
+                    ];
+                    $userNotes = new WP_Query($args);
 
+                    while($userNotes->have_posts()):
+                        $userNotes->the_post();
+                        $noteTitle = esc_attr(get_the_title());
+                        $noteId= get_the_ID();
+                    ?>
+                    <li class="fx-col gap-r1">
+                        <div class="fx-row-between w100">
+                            <input value="<?php echo $noteTitle ?>" id="title-notes-<?php echo $noteId ; ?>">
+                            <div class="button-container fx-row gap-2">
+                                <button class="btn btn__edit">Edit</button>
+                                <button class="btn btn__delete">Delete</button>
+                            </div>
+                        </div>
+                        <textarea
+                            id="content-notes-<?php echo $noteId ; ?>"><?php echo esc_attr(wp_strip_all_tags(get_the_content()))?></textarea>
+                    </li>
+                    <?php endwhile; ?>
+                </ul>
             </div>
         </div>
         <div class="col col__side col__right">
             <?php echo get_sidebar("tertiary"); ?>
         </div>
+    </div>
     </div>
 </main>
 <?php get_footer(); ?>
