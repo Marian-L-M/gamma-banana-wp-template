@@ -27,6 +27,7 @@ function load_project_files()
   wp_enqueue_script('gamma-banana-modules',get_theme_file_uri('/build/index.js') , array('jquery'), '1.0', true);
   wp_localize_script('gamma-banana-modules', 'gbThemeData', array(
     'root_url' => get_site_url(), // Make root url accessible to JS
+    'nonce' => wp_create_nonce('wp_rest')
   ));
 }
 add_action("wp_enqueue_scripts", "load_project_files");

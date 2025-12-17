@@ -39,8 +39,8 @@ $page_title = get_the_title();
                         $noteTitle = esc_attr(get_the_title());
                         $noteId= get_the_ID();
                     ?>
-                    <li class="fx-col gap-r1">
-                        <div class="fx-row-between w100">
+                    <li class="fx-col gap-r1" data-id="<?php echo $noteId ; ?>" data-title="<?php echo $noteTitle ; ?>">
+                        <div class=" fx-row-between w100">
                             <input value="<?php echo $noteTitle ?>" id="title-notes-<?php echo $noteId ; ?>">
                             <div class="button-container fx-row gap-2">
                                 <button class="btn btn__edit">Edit</button>
