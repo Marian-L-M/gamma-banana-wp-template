@@ -41,14 +41,16 @@ $page_title = get_the_title();
                     ?>
                     <li class="fx-col gap-r1" data-id="<?php echo $noteId ; ?>" data-title="<?php echo $noteTitle ; ?>">
                         <div class=" fx-row-between w100">
-                            <input value="<?php echo $noteTitle ?>" id="title-notes-<?php echo $noteId ; ?>">
+                            <input readonly value="<?php echo $noteTitle ?>" id="title-notes-<?php echo $noteId ; ?>"
+                                class="title-notes">
                             <div class="button-container fx-row gap-2">
                                 <button class="btn btn__edit">Edit</button>
+                                <button class="btn btn__cancel">Cancel</button>
                                 <button class="btn btn__delete">Delete</button>
                             </div>
                         </div>
-                        <textarea
-                            id="content-notes-<?php echo $noteId ; ?>"><?php echo esc_attr(wp_strip_all_tags(get_the_content()))?></textarea>
+                        <textarea readonly id="content-notes-<?php echo $noteId ; ?>"
+                            class="content-notes"><?php echo esc_attr(wp_strip_all_tags(get_the_content()))?></textarea>
                     </li>
                     <?php endwhile; ?>
                 </ul>
