@@ -6,7 +6,7 @@ class Notes {
     constructor() {
         this.deleteBtns = document.querySelectorAll(".btn__delete")
         this.editBtns = document.querySelectorAll(".btn__edit")
-        this.cancelBtns = document.querySelectorAll(".btn__cancel")
+        this.saveBtns = document.querySelectorAll(".btn__save")
         this.body = this.events()
 
     }
@@ -18,8 +18,8 @@ class Notes {
         this.editBtns.forEach((btn) => {
             btn.addEventListener("click", this.editHandler.bind(this))
         })
-        this.cancelBtns.forEach((btn) => {
-            btn.addEventListener("click", this.cancelHandler.bind(this))
+        this.saveBtns.forEach((btn) => {
+            btn.addEventListener("click", this.updateHandler.bind(this))
         })
     }
 
@@ -34,18 +34,25 @@ class Notes {
         }
 
     }
-    cancelHandler(e) {
-        const currentItem = e.target.closest('li')
-        this.deactivateItemForEdit(currentItem)
-        // this.deleteItem(currentItem)
-    }
+
     editHandler(e) {
         const currentItem = e.target.closest('li')
-        this.activateItemForEdit(currentItem)
-        // this.deleteItem(currentItem)
+        if (currentItem.dataset.state == "editable") {
+            this.deactivateItemForEdit(currentItem)
+            currentItem.setAttribute("data-state", "")
+            e.target.innerHTML = "Edit"
+        } else {
+            this.activateItemForEdit(currentItem)
+            currentItem.setAttribute("data-state", "editable")
+            e.target.innerHTML = "Cancel"
+        }
+    }
+    updateHandler(e) {
+        this.updateItem(e)
     }
 
     activateItemForEdit(item) {
+        item.classList.add("active")
         const inputs = item.querySelectorAll('.title-notes, .content-notes')
         inputs.forEach(input => {
             input.removeAttribute("readonly");
@@ -53,6 +60,7 @@ class Notes {
         });
     }
     deactivateItemForEdit(item) {
+        item.classList.remove("active")
         const inputs = item.querySelectorAll('.title-notes, .content-notes')
         inputs.forEach(input => {
             input.setAttribute("readonly", "");
@@ -80,19 +88,27 @@ class Notes {
             console.error('Network error during delete operation:', error);
         }
     }
-    async editItem(item) {
+
+    async updateItem(e) {
+        const item = e.target.closest('li');
+        const data = {
+            "title": item.querySelector(".title-notes").value,
+            "content": item.querySelector(".content-notes").value
+        };
         try {
             const response = await fetch(`${gbThemeData.root_url}/wp-json/wp/v2/notes/${item.dataset.id}`, {
                 method: 'POST',
                 headers: {
+                    'Content-Type': 'application/json',
                     'X-WP-Nonce': gbThemeData.nonce
                 },
+                body: JSON.stringify(data)
             });
             if (response.ok) {
-                console.log(`Item ${item.dataset.title} deleted successfully.`);
-                item.remove()
+                console.log(`Item ${item.dataset.title} updated successfully.`);
+                this.deactivateItemForEdit(item)
             } else {
-                console.error(`Failed to delete item. Status: ${response.status}`);
+                console.error(`Failed to update item. Status: ${response.status}`);
                 const errorData = await response.json();
                 console.error('Error details:', errorData);
             }

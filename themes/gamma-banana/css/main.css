@@ -331,6 +331,18 @@ nav {
   transform: translateY(100%);
 }
 
+#user-notes li .btn__save,
+#user-notes li .btn__cancel {
+  display: none;
+}
+
+/* #user-notes li.active .btn__edit {
+  display: none;
+} */
+#user-notes li.active .btn__save,
+#user-notes li.active .btn__cancel {
+  display: unset;
+}
 /* Large */
 /* XL */
 /* XXL */
