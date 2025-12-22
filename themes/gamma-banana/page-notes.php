@@ -23,9 +23,15 @@ $page_title = get_the_title();
         <div class="col col__side col__left">
             <?php echo get_sidebar("secondary"); ?>
         </div>
-        <div class="col col__center">
+        <div class="col col__center fx-col gap-half">
+            <div class="container container__full__pc new-note fx-col gap-1" id="new-note">
+                <h2>Create new note</h2>
+                <input placeholder="Title" id="title-notes-new" class="title-notes">
+                <textarea id="content-notes-new" class="content-notes"></textarea>
+                <button type="submit" class="btn btn__submit">Submit</button>
+            </div>
             <div class="container container__full__pc notes-contents" id="contents">
-                <ul class="fx-col gap-1" id="user-notes">
+                <ul class="w100 fx-col gap-1" id="user-notes">
                     <?php 
                     $args = [
                         "post_type" => "notes",

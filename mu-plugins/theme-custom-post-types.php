@@ -101,6 +101,8 @@ function theme_custom_post_types()
   ]);
   // Notess
   register_post_type("notes", [
+    "capability_type" => "note",
+    "map_meta_cap" => true,
     "supports" => ["title", "editor"],
     "public" => false,
     "rewrite" => [

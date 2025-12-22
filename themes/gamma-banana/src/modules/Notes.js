@@ -7,6 +7,8 @@ class Notes {
         this.deleteBtns = document.querySelectorAll(".btn__delete")
         this.editBtns = document.querySelectorAll(".btn__edit")
         this.saveBtns = document.querySelectorAll(".btn__save")
+        this.submitBtn = document.querySelector(".btn__submit")
+        this.contents = document.querySelector("#user-notes")
         this.body = this.events()
 
     }
@@ -21,6 +23,7 @@ class Notes {
         this.saveBtns.forEach((btn) => {
             btn.addEventListener("click", this.updateHandler.bind(this))
         })
+        this.submitBtn.addEventListener("click", this.submitHandler.bind(this))
     }
 
     // Methods
@@ -49,6 +52,9 @@ class Notes {
     }
     updateHandler(e) {
         this.updateItem(e)
+    }
+    submitHandler(e) {
+        this.submitItem(e)
     }
 
     activateItemForEdit(item) {
@@ -113,7 +119,50 @@ class Notes {
                 console.error('Error details:', errorData);
             }
         } catch (error) {
-            console.error('Network error during delete operation:', error);
+            console.error('Network error during update operation:', error);
+        }
+    }
+    async submitItem(e) {
+        const item = e.target.closest('#new-note');
+        const titleField = item.querySelector(".title-notes");
+        const contentField = item.querySelector(".content-notes");
+        const data = {
+            "title": titleField.value,
+            "content": contentField.value,
+            "status": 'private',
+        };
+        try {
+            const response = await fetch(`${gbThemeData.root_url}/wp-json/wp/v2/notes`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-WP-Nonce': gbThemeData.nonce
+                },
+                body: JSON.stringify(data)
+            });
+            if (response.ok) {
+                const createdNote = await response.json();
+                const createdNoteHTML = `
+                  <li class="fx-col gap-r1" data-id="${createdNote.id}" data-title="${createdNote.slug}">
+                        <div class=" fx-row-between w100">
+                            <input readonly value="${createdNote.slug}" id="title-notes-${createdNote.slug}"
+                                class="title-notes">
+                        </div>
+                        <textarea readonly id="content-notes-${createdNote.id}"
+                            class="content-notes">${createdNote.content.raw}</textarea>
+                        <button class="btn btn__save">Save</button>
+                    </li>
+                `
+                titleField.value = "";
+                contentField.value = "";
+                this.contents.insertAdjacentHTML('afterbegin', createdNoteHTML);
+            } else {
+                console.error(`Failed to create item. Status: ${response.status}`);
+                const errorData = await response.json();
+                console.error('Error details:', errorData);
+            }
+        } catch (error) {
+            console.error('Network error during creation:', error);
         }
     }
 }

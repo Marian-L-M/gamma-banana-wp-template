@@ -24,3 +24,15 @@ register_rest_field($type, $fieldName, array(
 }
 
 add_action('rest_api_init', "theme_custom_rest_global");
+
+// Endpoint security
+// Server side policy
+// Force note post type to be private
+function force_private_post_type($data) {
+    if($data['post_type'] == 'note' && $data['post_status'] != 'trash') {    
+        $data['post_status'] = "private";
+    }
+    return $data;
+}
+
+add_filter('wp_insert_post_data','makeNotePrivate');
