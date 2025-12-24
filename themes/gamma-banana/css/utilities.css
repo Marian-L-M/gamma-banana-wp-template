@@ -66,6 +66,13 @@
 .w100 {
   width: 100%;
 }
+/* Dispaly */
+.hidden {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
 /* Layout */
 .fx-col {
   display: flex;

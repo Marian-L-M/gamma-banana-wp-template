@@ -9,6 +9,7 @@ class Notes {
         this.saveBtns = document.querySelectorAll(".btn__save")
         this.submitBtn = document.querySelector(".btn__submit")
         this.contents = document.querySelector("#user-notes")
+        this.errorMessage = document.querySelector("#user-notes")
         this.body = this.events()
 
     }
@@ -156,10 +157,12 @@ class Notes {
                 titleField.value = "";
                 contentField.value = "";
                 this.contents.insertAdjacentHTML('afterbegin', createdNoteHTML);
-            } else {
-                console.error(`Failed to create item. Status: ${response.status}`);
+                console.log(response)
+            }
+            else {
                 const errorData = await response.json();
-                console.error('Error details:', errorData);
+                this.errorMessage.innerHTML = "Error: " + errorData.message;
+                this.errorMessage.classList.remove("hidden")
             }
         } catch (error) {
             console.error('Network error during creation:', error);

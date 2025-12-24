@@ -24,11 +24,13 @@ $page_title = get_the_title();
             <?php echo get_sidebar("secondary"); ?>
         </div>
         <div class="col col__center fx-col gap-half">
+            <?php if(is_user_logged_in()): ?>
             <div class="container container__full__pc new-note fx-col gap-1" id="new-note">
                 <h2>Create new note</h2>
                 <input placeholder="Title" id="title-notes-new" class="title-notes">
                 <textarea id="content-notes-new" class="content-notes"></textarea>
                 <button type="submit" class="btn btn__submit">Submit</button>
+                <span class="note-limit-message hidden" id="note-limit-message"></span>
             </div>
             <div class="container container__full__pc notes-contents" id="contents">
                 <ul class="w100 fx-col gap-1" id="user-notes">
@@ -39,16 +41,15 @@ $page_title = get_the_title();
                         "author" => get_current_user_id(),
                     ];
                     $userNotes = new WP_Query($args);
-
                     while($userNotes->have_posts()):
-                        $userNotes->the_post();
-                        $noteTitle = esc_attr(get_the_title());
-                        $noteId= get_the_ID();
+                    $userNotes->the_post();
+                    $noteTitle = esc_attr(get_the_title());
+                    $noteId= get_the_ID();
                     ?>
                     <li class="fx-col gap-r1" data-id="<?php echo $noteId ; ?>" data-title="<?php echo $noteTitle ; ?>">
                         <div class=" fx-row-between w100">
-                            <input readonly value="<?php echo $noteTitle ?>" id="title-notes-<?php echo $noteId ; ?>"
-                                class="title-notes">
+                            <input readonly value="<?php echo str_replace( "Private: ", "" , $noteTitle) ?>"
+                                id="title-notes-<?php echo $noteId ; ?>" class="title-notes">
                             <div class="button-container fx-row gap-2">
                                 <button class="btn btn__edit">Edit</button>
                                 <button class="btn btn__delete">Delete</button>
@@ -61,6 +62,12 @@ $page_title = get_the_title();
                     <?php endwhile; ?>
                 </ul>
             </div>
+            <?php else: ?>
+            <div class="container container__full__pc user-not-logged-in fx-col gap-1" id="user-not-logged-in">
+                <h2>Please log in to submit note</h2>
+                <a href="<? echo get_site_url()?>" class="a-btn">Return to top page</a>
+            </div>
+            <?php endif; ?>
         </div>
         <div class="col col__side col__right">
             <?php echo get_sidebar("tertiary"); ?>
