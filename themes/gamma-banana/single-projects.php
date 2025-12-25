@@ -12,7 +12,7 @@ $parent_id = wp_get_post_parent_id(get_the_ID());
         </div>
         <div class="col col__center fx-col-center">
             <div class="container container__full__pc likes" id="likes">
-
+                <?php generate_hearts(0, 2, "pink"); ?>
             </div>
             <!-- Contents -->
             <div class="container container__full__pc generic-contents" id="contents">
