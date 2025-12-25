@@ -11,6 +11,9 @@ $parent_id = wp_get_post_parent_id(get_the_ID());
             <?php echo get_sidebar("secondary"); ?>
         </div>
         <div class="col col__center fx-col-center">
+            <div class="container container__full__pc likes" id="likes">
+
+            </div>
             <!-- Contents -->
             <div class="container container__full__pc generic-contents" id="contents">
                 <?php if (have_posts()):

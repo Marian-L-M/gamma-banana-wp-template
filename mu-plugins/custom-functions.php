@@ -16,7 +16,7 @@ function generate_excerpt_with_link($limit)
  * Generate a responsive page banner with title overlay
  *
  * Requires the following template img file structure:
- * TEMPLATE_FOLDER/img
+ * TEMPLATE_FOLDER/assets/img
  * With subfolders sp/tab/pc/retina. Outputs a full-width banner from folders + inner path.
  *
  * @param string $file  The file name + inner path for an image
@@ -30,11 +30,11 @@ function generate_page_banner($file, $title, $subtitle = "")
   $template_url = get_template_directory_uri(); ?>
 <div class="title-banner fx-content-center" id="title">
     <picture>
-        <source media="(min-width:1201px)" srcset="<?php echo "{$template_url}/img/retina/{$file}"; ?>">
+        <source media="(min-width:1201px)" srcset="<?php echo "{$template_url}/assets/img/retina/{$file}"; ?>">
         <source media="(min-width:992px)"
-            srcset="<?php echo "{$template_url}/img/pc/{$file}"; ?> 1x, <?php echo "{$template_url}/img/retina/{$file}"; ?> 2x">
-        <source media="(min-width:576px)" srcset="<?php echo "{$template_url}/img/tab/{$file}"; ?>">
-        <img src="<?php echo "{$template_url}/img/sp/{$file}"; ?>" alt="<?php echo $title; ?>">
+            srcset="<?php echo "{$template_url}/assets/img/pc/{$file}"; ?> 1x, <?php echo "{$template_url}/assets/img/retina/{$file}"; ?> 2x">
+        <source media="(min-width:576px)" srcset="<?php echo "{$template_url}/assets/img/tab/{$file}"; ?>">
+        <img src="<?php echo "{$template_url}/assets/img/sp/{$file}"; ?>" alt="<?php echo $title; ?>">
     </picture>
     <h1 class="headline headline__large text-white">
         <?php echo $title; ?>
