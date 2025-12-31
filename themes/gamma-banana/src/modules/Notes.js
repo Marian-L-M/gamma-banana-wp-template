@@ -133,6 +133,9 @@ class Notes {
             "status": 'private',
         };
         try {
+            // To do
+            // Maybe rework to axios?
+            // Check tradeoffs
             const response = await fetch(`${gbThemeData.root_url}/wp-json/wp/v2/notes`, {
                 method: 'POST',
                 headers: {

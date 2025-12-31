@@ -1,11 +1,12 @@
 <?php 
-add_action('rest_api_init', "themeRegisterAllCptSearch");
 function themeRegisterAllCptSearch(){
-    register_rest_route("all/v1", "search", [
-        "methods" => WP_REST_SERVER::READABLE,
-        "callback" => "allSearchResults",
-    ]);
+  register_rest_route("all/v1", "search", [
+    "methods" => WP_REST_SERVER::READABLE,
+    "callback" => "allSearchResults",
+  ]);
 }
+
+add_action('rest_api_init', "themeRegisterAllCptSearch");
 
 function allSearchResults($data) {
   $entries = new WP_QUERY([

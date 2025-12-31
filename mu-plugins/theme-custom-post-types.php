@@ -99,7 +99,7 @@ function theme_custom_post_types()
     ],
     "menu_icon" => "dashicons-media-document",
   ]);
-  // Notess
+  // Notes
   register_post_type("notes", [
     "capability_type" => "note",
     "map_meta_cap" => true,
@@ -118,6 +118,22 @@ function theme_custom_post_types()
       "singular_name" => "note",
     ],
     "menu_icon" => "dashicons-edit",
+  ]);
+  // Likes
+  register_post_type("likes", [
+    "supports" => ["title"],
+    "public" => false,
+    "show_in_rest" => false,
+    "show_ui" => true,
+    "has_archive" => false,
+    "labels" => [
+      "name" => "likes",
+      "add_new_item" => "Add new like",
+      "edit_item" => "Edit like",
+      "all_items" => "likes",
+      "singular_name" => "like",
+    ],
+    "menu_icon" => "dashicons-heart",
   ]);
 }
 add_action("init", "theme_custom_post_types");

@@ -230,6 +230,15 @@ nav {
     }
   }
 }
+
+/* Data handling */
+
+[data-status="inactive"]  .active-content {
+  display: none;
+}
+[data-status="active"]  .inactive-content {
+  display: none;
+}
 /* Small */
 /* Medium */
 @media screen and (max-width: 768px) {

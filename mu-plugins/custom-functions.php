@@ -103,7 +103,7 @@ function generate_hearts(  $number_full = 1 , $number_outline = 0, $color = "#00
     <?php 
         for ($i = 0; $i < $number_full; $i++): 
     ?>
-    <svg class="heart heart-full" width="800px" height="800px" viewBox="0 0 16 16" fill="none"
+    <svg class="heart heart-full" width="24px" height="24px" viewBox="0 0 16 16" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path
             d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
@@ -114,7 +114,7 @@ function generate_hearts(  $number_full = 1 , $number_outline = 0, $color = "#00
         for ($i = 0; $i < $number_outline; $i++): 
         ?>
     <svg class="heart heart-outline" fill="<?php echo $color ?>" version="1.1" id="Capa_1"
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
         viewBox="0 0 378.94 378.94" xml:space="preserve">
         <g>
             <path d="M348.151,54.514c-19.883-19.884-46.315-30.826-74.435-30.826c-28.124,0-54.559,10.942-74.449,30.826l-9.798,9.8l-9.798-9.8
