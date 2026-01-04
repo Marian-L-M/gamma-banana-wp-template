@@ -1,0 +1,78 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ello Govna!\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-02 12:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.0; wp-6.9; php-8.4.10\n"
+"X-Domain: ellogvonadomain"
+
+#: ello-govna.php:110
+msgid "characters"
+msgstr ""
+
+#. Name of the plugin
+msgid "Ello Govna!"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://nama-tamago.dev"
+msgstr ""
+
+#. Author of the plugin
+msgid "Marian Maschke"
+msgstr ""
+
+#: ello-govna.php:114
+msgid "minute(s) to read"
+msgstr ""
+
+#. Description of the plugin
+msgid "Quantum spanner functionaliteis."
+msgstr ""
+
+#: ello-govna.php:106 ello-govna.php:110
+msgid "The post has"
+msgstr ""
+
+#: ello-govna.php:114
+msgid "The post takes"
+msgstr ""
+
+#: ello-govna.php:37
+msgid "Word Count"
+msgstr ""
+
+#: ello-govna.php:106
+msgid "words"
+msgstr ""
+
+msgid "End of Post"
+msgstr ""
+
+msgid "Beginning of Post"
+msgstr ""
+
+msgid "Word Count Settings"
+msgstr ""
+
+msgid "Read Time"
+msgstr ""
+
+msgid "Character Count"
+msgstr ""
+
+msgid "Error, duplicate 1: Word Count"
+msgstr ""
+
+msgid "Headline Text"
+msgstr ""
