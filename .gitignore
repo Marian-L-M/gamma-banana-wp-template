@@ -4,9 +4,14 @@
 debug.log
 error_log
 /node_modules
-/plugins
+/plugins/*
+!/plugins/test-plugin
+!/plugins/test-plugin/**
+!/plugins/word-filter
+!/plugins/word-filter/**
 /uploads
 /upgrade
+/languages
 /themes/*
 !/themes/gamma-banana
 !/themes/gamma-banana/**
