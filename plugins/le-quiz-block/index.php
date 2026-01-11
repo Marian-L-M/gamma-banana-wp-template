@@ -26,9 +26,13 @@ class LeQuizBlock {
     }
 
     function theHTML($attributes) {
+        if(!is_admin()) {
+            // wp_enqueue_script('attentionFrontend', plugin_dir_url(__FILE__) . 'build/frontend.js', array('wp-element'), '1.0', true); // For block editor
+            wp_enqueue_script('lqb-frontend', plugin_dir_url(__FILE__) . 'build/frontend.js', ['wp-element',  'wp-blocks'], '1.0', true);
+            wp_register_style("lqb-frontend-styles", plugin_dir_url(__FILE__) . "build/frontend.css");
+        }
         ob_start();?>
-<h3>Today the sky is <?php echo $attributes['question'] ?> and the grills are <?php echo $attributes['question'] ?>!!!
-</h3>
+<div class="lqb-update-me"></div>
 <?php return ob_get_clean();
     }
 }

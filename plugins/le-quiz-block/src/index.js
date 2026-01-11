@@ -1,6 +1,27 @@
 import "./index.scss"
 import {TextControl, Flex, FlexBlock, FlexItem, Button, Icon} from "@wordpress/components"
 
+(function(){
+    let locked = false;
+    
+    // subscribe function is called anytime anything changes in tne blocks
+    wp.data.subscribe(function() {
+        const results = wp.data.select("core/block-editor").getBlocks().filter(function(block) {
+                    return block.name == "theme-custom-blocks/le-quiz-block" && block.attributes.correctAnswer == undefined;
+        });
+
+        if(results.length && locked == false) {
+            locked = true;
+            wp.data.dispatch("core/editor").lockPostSaving("noanswer");
+        }
+
+    if(!results.length && locked) {
+            locked = false;
+            wp.data.dispatch("core/editor").unlockPostSaving("noanswer");
+        }
+    })
+})()
+
 wp.blocks.registerBlockType("theme-custom-blocks/le-quiz-block", {
     title: "le quiz block",
     icon: "smiley",
@@ -11,7 +32,11 @@ wp.blocks.registerBlockType("theme-custom-blocks/le-quiz-block", {
         },
         answers:{
             type:"array",
-            default: ["red", "blue"],
+            default: [""],
+        },
+        correctAnswer: {
+            type:"number",
+            default:undefined
         }
     },
     edit: EditComponent,
@@ -30,6 +55,15 @@ function EditComponent (props) {
             return index != indexToDelete;
         });
         props.setAttributes({answers: newAnswers})
+
+        if(indexToDelete == props.attributes.correctAnswer) {
+            props.setAttributes({correctAnswer: undefined})
+        }
+    }
+
+    function markAsCorrect(index) {
+       
+        props.setAttributes({correctAnswer: index})
     }
 
     return (
@@ -48,7 +82,7 @@ function EditComponent (props) {
                             }  __next40pxDefaultSize={true} __nextHasNoMarginBottom={true}  autoFocus={answer == undefined} />
                     </FlexBlock>
                     <FlexItem>
-                        <Button className="lqb-select"><Icon className="mark-correct" icon="star-empty"/></Button>
+                        <Button onClick={() => markAsCorrect(index)} className="lqb-select"><Icon className="mark-correct" icon={props.attributes.correctAnswer == index  ? "star-filled" :"star-empty"}/></Button>
                     </FlexItem>
                     <FlexItem>
                         <Button isLink className="lqb-delete" onClick={()=> deleteAnswer(index)}>Delete</Button>
