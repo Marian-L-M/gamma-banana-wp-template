@@ -1,6 +1,7 @@
 import domReady from '@wordpress/dom-ready';
 import { createRoot } from '@wordpress/element';
 import "./frontend.scss";
+import { useState } from 'react';
 
 domReady( () => {
     const divsToUpdate = document.querySelectorAll(".lqb-update-me")
@@ -13,11 +14,13 @@ domReady( () => {
 })
 
 function LeQuiz(props) {
+    const [isCorrect, setIsCorrect] = useState(undefined)
+
     function handleAnswer(index) {
         if(index === props.correctAnswer) {
-            alert("Correct!")
+            setIsCorrect(true);
         } else {
-            alert("false:(")
+            setIsCorrect(false);
         }
     }
 
@@ -29,6 +32,12 @@ function LeQuiz(props) {
                 return <li key={`${props.question}-answer-${answer}-${index}`} onClick={() => handleAnswer(index)}>{answer}</li>
             })}
            </ul>
+           <div className={`correct-message ${isCorrect == true ? "correct-message--visible" : ""}` }>
+            <p>Le correct!</p>
+           </div>
+           <div className={`incorrect-message ${isCorrect === false ? "incorrect-message--visible" : ""}`}>
+            <p>Sowwwy! Try again!</p>
+           </div>
         </div>
     )
 }
