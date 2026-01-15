@@ -1,7 +1,7 @@
 import domReady from '@wordpress/dom-ready';
 import { createRoot } from '@wordpress/element';
 import "./frontend.scss";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 domReady( () => {
     const divsToUpdate = document.querySelectorAll(".lqb-update-me")
@@ -15,6 +15,18 @@ domReady( () => {
 
 function LeQuiz(props) {
     const [isCorrect, setIsCorrect] = useState(undefined)
+    const [isCorrectDelay, setIsCorrectDelay] = useState(undefined)
+
+    useEffect(() => {
+        if(isCorrect === false) {
+            setTimeout(()=>{setIsCorrect(undefined)},2600)
+        }
+        if(isCorrect === true) {
+            setTimeout(()=>{
+            setIsCorrectDelay(true);
+            },1000)
+        }
+    }, [isCorrect])
 
     function handleAnswer(index) {
         if(index === props.correctAnswer) {
@@ -25,11 +37,27 @@ function LeQuiz(props) {
     }
 
     return (
-        <div className="le-quiz-block-frontend">
+        <div className="le-quiz-block-frontend" style={{backgroundColor: props.bgColor, textAlign: props.theAlignment}}>
            <p> {props.question}</p>
            <ul>
             {props.answers.map((answer, index)=> {
-                return <li key={`${props.question}-answer-${answer}-${index}`} onClick={() => handleAnswer(index)}>{answer}</li>
+                return (
+                    <li 
+                        key={`${props.question}-answer-${answer}-${index}`} 
+                        onClick={isCorrect === true ? undefined : () => handleAnswer(index)}
+                        className={
+                                (isCorrectDelay === true && index == props.correctAnswer ? "no-click": "") + 
+                                (isCorrectDelay === true && index != props.correctAnswer ? "fade-incorrect": "")
+                                } 
+                        >
+                        {isCorrectDelay === true && index == props.correctAnswer && (
+                            "✅　"
+                        )}
+                        {isCorrectDelay === true && index != props.correctAnswer && (
+                            "❌　"
+                        )}
+                        {answer}
+                    </li>)
             })}
            </ul>
            <div className={`correct-message ${isCorrect == true ? "correct-message--visible" : ""}` }>

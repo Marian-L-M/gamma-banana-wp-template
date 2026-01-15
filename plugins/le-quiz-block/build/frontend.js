@@ -162,6 +162,19 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(() => {
 });
 function LeQuiz(props) {
   const [isCorrect, setIsCorrect] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(undefined);
+  const [isCorrectDelay, setIsCorrectDelay] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(undefined);
+  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+    if (isCorrect === false) {
+      setTimeout(() => {
+        setIsCorrect(undefined);
+      }, 2600);
+    }
+    if (isCorrect === true) {
+      setTimeout(() => {
+        setIsCorrectDelay(true);
+      }, 1000);
+    }
+  }, [isCorrect]);
   function handleAnswer(index) {
     if (index === props.correctAnswer) {
       setIsCorrect(true);
@@ -171,13 +184,18 @@ function LeQuiz(props) {
   }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: "le-quiz-block-frontend",
+    style: {
+      backgroundColor: props.bgColor,
+      textAlign: props.theAlignment
+    },
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
       children: [" ", props.question]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
       children: props.answers.map((answer, index) => {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
-          onClick: () => handleAnswer(index),
-          children: answer
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
+          onClick: isCorrect === true ? undefined : () => handleAnswer(index),
+          className: (isCorrectDelay === true && index == props.correctAnswer ? "no-click" : "") + (isCorrectDelay === true && index != props.correctAnswer ? "fade-incorrect" : ""),
+          children: [isCorrectDelay === true && index == props.correctAnswer && "✅　", isCorrectDelay === true && index != props.correctAnswer && "❌　", answer]
         }, `${props.question}-answer-${answer}-${index}`);
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
