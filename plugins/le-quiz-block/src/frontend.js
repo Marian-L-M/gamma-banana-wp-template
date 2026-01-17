@@ -1,14 +1,12 @@
-import domReady from '@wordpress/dom-ready';
 import { createRoot } from '@wordpress/element';
 import "./frontend.scss";
 import { useState, useEffect } from 'react';
 
-domReady( () => {
+document.addEventListener("DOMContentLoaded", function(){
     const divsToUpdate = document.querySelectorAll(".lqb-update-me")
     divsToUpdate.forEach(function(div) {
         const data = JSON.parse(div.querySelector("pre").innerHTML)
         const root = createRoot(div)
-        div.classList.remove("lqb-update-me");
         root.render( <LeQuiz {...data} /> );
     })
 })
@@ -40,7 +38,7 @@ function LeQuiz(props) {
         <div className="le-quiz-block-frontend" style={{backgroundColor: props.bgColor, textAlign: props.theAlignment}}>
            <p> {props.question}</p>
            <ul>
-            {props.answers.map((answer, index)=> {
+            {props.answers?.map((answer, index)=> {
                 return (
                     <li 
                         key={`${props.question}-answer-${answer}-${index}`} 

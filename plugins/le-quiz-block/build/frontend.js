@@ -14,16 +14,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ },
 
-/***/ "@wordpress/dom-ready"
-/*!**********************************!*\
-  !*** external ["wp","domReady"] ***!
-  \**********************************/
-(module) {
-
-module.exports = window["wp"]["domReady"];
-
-/***/ },
-
 /***/ "@wordpress/element"
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -135,35 +125,31 @@ var __webpack_exports__ = {};
   !*** ./src/frontend.js ***!
   \*************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/dom-ready */ "@wordpress/dom-ready");
-/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _frontend_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./frontend.scss */ "./src/frontend.scss");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _frontend_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./frontend.scss */ "./src/frontend.scss");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
 
-
-_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(() => {
+document.addEventListener("DOMContentLoaded", function () {
   const divsToUpdate = document.querySelectorAll(".lqb-update-me");
   divsToUpdate.forEach(function (div) {
     const data = JSON.parse(div.querySelector("pre").innerHTML);
-    const root = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createRoot)(div);
-    div.classList.remove("lqb-update-me");
-    root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LeQuiz, {
+    const root = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createRoot)(div);
+    root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(LeQuiz, {
       ...data
     }));
   });
 });
 function LeQuiz(props) {
-  const [isCorrect, setIsCorrect] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(undefined);
-  const [isCorrectDelay, setIsCorrectDelay] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(undefined);
-  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+  const [isCorrect, setIsCorrect] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(undefined);
+  const [isCorrectDelay, setIsCorrectDelay] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(undefined);
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
     if (isCorrect === false) {
       setTimeout(() => {
         setIsCorrect(undefined);
@@ -182,30 +168,30 @@ function LeQuiz(props) {
       setIsCorrect(false);
     }
   }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "le-quiz-block-frontend",
     style: {
       backgroundColor: props.bgColor,
       textAlign: props.theAlignment
     },
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
       children: [" ", props.question]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
-      children: props.answers.map((answer, index) => {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
+      children: props.answers?.map((answer, index) => {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
           onClick: isCorrect === true ? undefined : () => handleAnswer(index),
           className: (isCorrectDelay === true && index == props.correctAnswer ? "no-click" : "") + (isCorrectDelay === true && index != props.correctAnswer ? "fade-incorrect" : ""),
           children: [isCorrectDelay === true && index == props.correctAnswer && "✅　", isCorrectDelay === true && index != props.correctAnswer && "❌　", answer]
         }, `${props.question}-answer-${answer}-${index}`);
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: `correct-message ${isCorrect == true ? "correct-message--visible" : ""}`,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
         children: "Le correct!"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: `incorrect-message ${isCorrect === false ? "incorrect-message--visible" : ""}`,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
         children: "Sowwwy! Try again!"
       })
     })]

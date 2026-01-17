@@ -25,13 +25,12 @@ class LeQuizBlock {
     }
 
     function theHTML($attributes) {
-        if(!is_admin()) {
-            $asset_file = include(plugin_dir_path(__FILE__) . 'build/frontend.asset.php');
-            wp_enqueue_script('lqb-frontend', plugins_url( 'build/frontend.js', __FILE__ ), $asset_file['dependencies'], $asset_file['version'],         [
-            'in_footer' => true,
-        ]);
-            wp_enqueue_style("lqb-frontend-styles", plugin_dir_url(__FILE__) . "build/frontend.css");
-        }
+        // if(!is_admin()) {
+        //     $asset_file = include(plugin_dir_path(__FILE__) . 'build/frontend.asset.php');
+        //     wp_enqueue_script('lqb-frontend', plugins_url( 'build/frontend.js', __FILE__ ), $asset_file['dependencies'], $asset_file['version'],         [
+        //     'in_footer' => true,
+        // ]);
+        // }
         ob_start();?>
 <div class="lqb-update-me">
     <pre style="display: none;"><?php echo wp_json_encode($attributes) ?></pre>
