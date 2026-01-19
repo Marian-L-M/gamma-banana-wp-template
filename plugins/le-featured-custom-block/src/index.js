@@ -28,6 +28,10 @@ wp.blocks.registerBlockType("theme-custom-blocks/le-featured-block", {
 })
 
 function EditComponent (props) {
+     const blockProps = useBlockProps({
+        className: "lfb-edit-block", 
+        style:{backgroundColor: props.attributes.bgColor}
+    })
     const allowedPostTypes = ['roadmap', 'projects', 'features', 'posts', 'guides', "wikis", "notes"];
     
     const allPostsForFeature = useSelect(select => {
@@ -45,28 +49,35 @@ function EditComponent (props) {
         
         return allPosts;
     }, [allowedPostTypes]);
-    
-    const blockProps = useBlockProps({
-        className: "lfb-edit-block", 
-        style:{backgroundColor: props.attributes.bgColor}
-    })
 
-    console.log(allPostsForFeature)
+    if(!allPostsForFeature) {
+        return <p>Loading...</p>
+    }
 
     return (
-    <div {...blockProps}>
-        <div className="featured-block-wrapper">
-        <div className="featured-select-container">
-            <select id="select-featured" onChange={(e) => props.setAttributes({featuredId : e.target.value})}>
-                <option value="">Select a Post</option>
-                <option value="1" selected={props.attributes.featuredId == 1}>1</option>
-                <option value="2" selected={props.attributes.featuredId == 2}>2</option>
-                <option value="3" selected={props.attributes.featuredId == 3}>3</option>
-                <option value="4" selected={props.attributes.featuredId == 4}>4</option>
-            </select>
+        <div {...blockProps}>
+            <div className="featured-block-wrapper">
+                <div className="featured-select-container">
+                    <select
+                        id="select-featured"
+                        value={props.attributes.featuredId || ""}
+                        onChange={(e) => props.setAttributes({featuredId : e.target.value})}
+                    >
+                        <option value="">Select a Post</option>
+                        {allPostsForFeature.map(featuredPost => {
+                        return (
+                            <option
+                                key={featuredPost.id}
+                                value={featuredPost.id}
+                            >
+                                {featuredPost.title.rendered || featuredPost.title}
+                            </option>
+                            )
+                        })}
+                    </select>
+                </div>
+                <h1>Ello Povna</h1>
+            </div>
         </div>
-        <h1>Ello Povna</h1>
-        </div>
-    </div>
     )
 }

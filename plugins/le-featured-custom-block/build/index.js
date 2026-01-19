@@ -155,6 +155,12 @@ wp.blocks.registerBlockType("theme-custom-blocks/le-featured-block", {
   }
 });
 function EditComponent(props) {
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: "lfb-edit-block",
+    style: {
+      backgroundColor: props.attributes.bgColor
+    }
+  });
   const allowedPostTypes = ['roadmap', 'projects', 'features', 'posts', 'guides', "wikis", "notes"];
   const allPostsForFeature = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
     const allPosts = [];
@@ -168,13 +174,11 @@ function EditComponent(props) {
     });
     return allPosts;
   }, [allowedPostTypes]);
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-    className: "lfb-edit-block",
-    style: {
-      backgroundColor: props.attributes.bgColor
-    }
-  });
-  console.log(allPostsForFeature);
+  if (!allPostsForFeature) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+      children: "Loading..."
+    });
+  }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     ...blockProps,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -183,28 +187,18 @@ function EditComponent(props) {
         className: "featured-select-container",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
           id: "select-featured",
+          value: props.attributes.featuredId || "",
           onChange: e => props.setAttributes({
             featuredId: e.target.value
           }),
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
             value: "",
             children: "Select a Post"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-            value: "1",
-            selected: props.attributes.featuredId == 1,
-            children: "1"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-            value: "2",
-            selected: props.attributes.featuredId == 2,
-            children: "2"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-            value: "3",
-            selected: props.attributes.featuredId == 3,
-            children: "3"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-            value: "4",
-            selected: props.attributes.featuredId == 4,
-            children: "4"
+          }), allPostsForFeature.map(featuredPost => {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+              value: featuredPost.id,
+              children: featuredPost.title.rendered || featuredPost.title
+            }, featuredPost.id);
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
