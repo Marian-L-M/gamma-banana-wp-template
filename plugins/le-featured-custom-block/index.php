@@ -10,23 +10,38 @@
 
 if(!defined('ABSPATH')) exit;
 
+require_once plugin_dir_path(__FILE__) . 'inc/generate-featured-post.php';
+
 class LeFeaturedBlock {
     public function __construct() {
         add_action("init", [$this, 'adminAssets']);
+        add_action("rest_api_init", [$this, 'featuredHTML']);
     }
 
     public function adminAssets() {
         register_block_type(__DIR__, [
-            "render_callback" => [$this, 'theHTML'],
+            "render_callback" => [$this, 'renderCallback'],
         ]);
     }
 
-    public function theHTML($attributes) {
-        ob_start();?>
-<div class="lfb-update-me">
-    <pre style="display: none;"><?php echo wp_json_encode($attributes) ?></pre>
-</div>
-<?php return ob_get_clean();
+    public function renderCallback($attributes) {
+        if($attributes["featuredId"]) {
+            return generateFeaturedPostHTML($attributes["featuredId"]);
+        }
+        else {
+            return NULL;
+        }
+    }
+
+    public function featuredHTML() {
+        register_rest_route('featuredPost/v1', "getHTML", [
+            'methods' => WP_REST_SERVER::READABLE,
+            'callback' => [$this, 'getFeaturedHTML']
+        ]);
+        
+    }
+    public function getFeaturedHTML($data) {
+        return generateFeaturedPostHTML($data["postID"]);
     }
 }
 

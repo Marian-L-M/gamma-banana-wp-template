@@ -1,6 +1,8 @@
 import "./index.scss"
 import { useBlockProps} from "@wordpress/block-editor"
 import { useSelect } from "@wordpress/data"
+import { useState, useEffect } from "react";
+import apiFetch from '@wordpress/api-fetch'
 
 wp.blocks.registerBlockType("theme-custom-blocks/le-featured-block", {
     title: "le featured block",
@@ -28,7 +30,19 @@ wp.blocks.registerBlockType("theme-custom-blocks/le-featured-block", {
 })
 
 function EditComponent (props) {
-     const blockProps = useBlockProps({
+    const [thePreview, setThePreview] = useState("");
+    useEffect(() => {
+        async function go() {
+            const response = await apiFetch({
+                path: `/featuredPost/v1/getHTML?postID=${props.attributes.featuredId}`,
+                method: "GET"
+            })
+            setThePreview(response)
+        }
+        go()
+    },[props.attributes.featuredId])
+
+    const blockProps = useBlockProps({
         className: "lfb-edit-block", 
         style:{backgroundColor: props.attributes.bgColor}
     })
@@ -61,7 +75,7 @@ function EditComponent (props) {
                     <select
                         id="select-featured"
                         value={props.attributes.featuredId || ""}
-                        onChange={(e) => props.setAttributes({featuredId : e.target.value})}
+                        onChange={(e) => {props.setAttributes({featuredId : e.target.value});}}
                     >
                         <option value="">Select a Post</option>
                         {allPostsForFeature.map(featuredPost => {
@@ -76,7 +90,7 @@ function EditComponent (props) {
                         })}
                     </select>
                 </div>
-                <h1>Ello Povna</h1>
+                <div dangerouslySetInnerHTML={{__html: thePreview}}></div>
             </div>
         </div>
     )
