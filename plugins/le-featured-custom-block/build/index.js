@@ -156,6 +156,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const __ = wp.i18n.__; // use instead of '@wordpress/i18n' for compatibility issues with loco translate
+
 wp.blocks.registerBlockType("theme-custom-blocks/le-featured-block", {
   title: "le featured block",
   icon: "networking",
@@ -250,7 +252,7 @@ function EditComponent(props) {
           },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
             value: "",
-            children: "Select a Post"
+            children: __("Select a Post", "le-featured-custom-block")
           }), allPostsForFeature.map(featuredPost => {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
               value: featuredPost.id,

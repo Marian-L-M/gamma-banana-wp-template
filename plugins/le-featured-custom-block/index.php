@@ -5,7 +5,8 @@
     Version: 1.0
     Author: Marian Maschke
     Author URI: https://nama-tamagao.dev
-
+    Text Domain: le-featured-custom-block
+    Domain:
     */
 
 if(!defined('ABSPATH')) exit;
@@ -29,8 +30,9 @@ class LeFeaturedBlock {
     }
 
     public function adminAssets() {
-        $allowedPostTypes = ['roadmap', 'projects', 'features', 'post', 'guides', "wikis", "notes"];
+        load_plugin_textdomain('le-featured-custom-block', false, dirname(plugin_basename(__FILE__)) . "/languages");
 
+        $allowedPostTypes = ['roadmap', 'projects', 'features', 'post', 'guides', "wikis", "notes"];
         foreach($allowedPostTypes as $postType) {
             register_meta($postType, "featuredpostmeta", [
                 'show_in_rest' => true,
@@ -42,6 +44,8 @@ class LeFeaturedBlock {
         register_block_type(__DIR__, [
             "render_callback" => [$this, 'renderCallback'],
         ]);
+
+        wp_set_script_translations("theme-custom-blocks-le-featured-block-editor-script", "le-featured-custom-block", plugin_dir_path(__FILE__) . "languages");
     }
 
     public function renderCallback($attributes) {

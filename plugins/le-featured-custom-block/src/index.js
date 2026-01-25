@@ -3,6 +3,7 @@ import { useBlockProps} from "@wordpress/block-editor"
 import { useSelect } from "@wordpress/data"
 import { useState, useEffect } from "react";
 import apiFetch from '@wordpress/api-fetch'
+const __ = wp.i18n.__ // use instead of '@wordpress/i18n' for compatibility issues with loco translate
 
 wp.blocks.registerBlockType("theme-custom-blocks/le-featured-block", {
     title: "le featured block",
@@ -99,7 +100,7 @@ function EditComponent (props) {
                         value={props.attributes.featuredId || ""}
                         onChange={(e) => {props.setAttributes({featuredId : parseInt(e.target.value)});}}
                     >
-                        <option value="">Select a Post</option>
+                        <option value="">{__("Select a Post", "le-featured-custom-block")}</option>
                         {allPostsForFeature.map(featuredPost => {
                         return (
                             <option
