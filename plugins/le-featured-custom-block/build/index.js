@@ -162,7 +162,7 @@ wp.blocks.registerBlockType("theme-custom-blocks/le-featured-block", {
   category: "common",
   attributes: {
     featuredId: {
-      type: "string"
+      type: "number"
     },
     bgColor: {
       type: "string",
@@ -183,22 +183,41 @@ wp.blocks.registerBlockType("theme-custom-blocks/le-featured-block", {
 function EditComponent(props) {
   const [thePreview, setThePreview] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)("");
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
-    async function go() {
-      const response = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
-        path: `/featuredPost/v1/getHTML?postID=${props.attributes.featuredId}`,
-        method: "GET"
-      });
-      setThePreview(response);
+    if (props.attributes.featuredId) {
+      updateTheMeta();
+      async function go() {
+        const response = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
+          path: `/featuredPost/v1/getHTML?postId=${props.attributes.featuredId}`,
+          method: "GET"
+        });
+        setThePreview(response);
+      }
+      go();
     }
-    go();
+    ;
   }, [props.attributes.featuredId]);
+  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+    return () => {
+      updateTheMeta();
+    };
+  }, []);
+  function updateTheMeta() {
+    const featuredPostsForMeta = wp.data.select("core/block-editor").getBlocks().filter(x => x.name == "theme-custom-blocks/le-featured-block").map(x => x.attributes.featuredId).filter(id => id && !isNaN(id)).filter((x, index, arr) => {
+      return arr.indexOf(x) == index;
+    });
+    wp.data.dispatch("core/editor").editPost({
+      meta: {
+        featuredpostmeta: featuredPostsForMeta
+      }
+    });
+  }
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
     className: "lfb-edit-block",
     style: {
       backgroundColor: props.attributes.bgColor
     }
   });
-  const allowedPostTypes = ['roadmap', 'projects', 'features', 'posts', 'guides', "wikis", "notes"];
+  const allowedPostTypes = ['roadmap', 'projects', 'features', 'post', 'guides', "wikis", "notes"];
   const allPostsForFeature = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
     const allPosts = [];
     allowedPostTypes.forEach(postType => {
@@ -223,11 +242,10 @@ function EditComponent(props) {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "featured-select-container",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("select", {
-          id: "select-featured",
           value: props.attributes.featuredId || "",
           onChange: e => {
             props.setAttributes({
-              featuredId: e.target.value
+              featuredId: parseInt(e.target.value)
             });
           },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {

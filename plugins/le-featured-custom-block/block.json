@@ -3,6 +3,15 @@
     "apiVersion": 3,
     "name": "theme-custom-blocks/le-featured-block",
     "title": "Le Quiz Block",
+    "attributes": {
+        "featuredId": {
+            "type": "number"
+        },
+        "bgColor": {
+            "type": "string",
+            "default": "#ebebeb"
+        }
+    },
     "editorStyle": "file:./build/index.css",
     "editorScript": "file:./build/index.js",
     "script": [ "file:./build/script.css", "frontend-shared-script" ],

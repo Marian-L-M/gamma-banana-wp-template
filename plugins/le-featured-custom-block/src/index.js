@@ -9,9 +9,7 @@ wp.blocks.registerBlockType("theme-custom-blocks/le-featured-block", {
     icon: "networking",
     category: "common",
     attributes: {
-        featuredId: {
-            type: "string",
-        },
+        featuredId: {type: "number"},
         bgColor: {
             type: "string",
             default:"#ebebeb"
@@ -31,22 +29,47 @@ wp.blocks.registerBlockType("theme-custom-blocks/le-featured-block", {
 
 function EditComponent (props) {
     const [thePreview, setThePreview] = useState("");
+
     useEffect(() => {
+     if(props.attributes.featuredId){
+        updateTheMeta();
         async function go() {
             const response = await apiFetch({
-                path: `/featuredPost/v1/getHTML?postID=${props.attributes.featuredId}`,
+                path: `/featuredPost/v1/getHTML?postId=${props.attributes.featuredId}`,
                 method: "GET"
             })
             setThePreview(response)
         }
         go()
+        };
     },[props.attributes.featuredId])
+        
+    useEffect(() => {
+        return () => {
+            updateTheMeta()
+        }
+    },[])
+
+    function updateTheMeta() {
+        const featuredPostsForMeta = wp.data.select("core/block-editor")
+            .getBlocks()
+            .filter(x => x.name == "theme-custom-blocks/le-featured-block")
+            .map(x => x.attributes.featuredId)
+            .filter(id => id && !isNaN(id))
+            .filter((x, index, arr) => {
+                return arr.indexOf(x) == index
+            })
+        wp.data.dispatch("core/editor").editPost({meta: {
+            featuredpostmeta: featuredPostsForMeta
+        }});
+    }
 
     const blockProps = useBlockProps({
         className: "lfb-edit-block", 
         style:{backgroundColor: props.attributes.bgColor}
     })
-    const allowedPostTypes = ['roadmap', 'projects', 'features', 'posts', 'guides', "wikis", "notes"];
+
+    const allowedPostTypes = ['roadmap', 'projects', 'features', 'post', 'guides', "wikis", "notes"];
     
     const allPostsForFeature = useSelect(select => {
         const allPosts = [];
@@ -73,9 +96,8 @@ function EditComponent (props) {
             <div className="featured-block-wrapper">
                 <div className="featured-select-container">
                     <select
-                        id="select-featured"
                         value={props.attributes.featuredId || ""}
-                        onChange={(e) => {props.setAttributes({featuredId : e.target.value});}}
+                        onChange={(e) => {props.setAttributes({featuredId : parseInt(e.target.value)});}}
                     >
                         <option value="">Select a Post</option>
                         {allPostsForFeature.map(featuredPost => {

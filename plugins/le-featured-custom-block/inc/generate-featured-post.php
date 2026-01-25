@@ -1,14 +1,14 @@
-    <?php 
+    <?php
      function generateFeaturedPostHTML($id) {
-        $allowedPostTypes = ['roadmap', 'projects', 'features', 'posts', 'guides', "wikis", "notes"];
+        $allowedPostTypes = ['roadmap', 'projects', 'features', 'post', 'guides', "wikis", "notes"];
         $featuredPosts = new WP_Query([
             "post_type" => $allowedPostTypes,
             "p" => $id,
         ]);
 
+        
         while ($featuredPosts->have_posts()) {
             $featuredPosts->the_post();
-
             ob_start();
             ?>
     <div class="featured-callout fx-row">
@@ -19,7 +19,7 @@
         <div class="featured-callout__text">
             <h5><?php echo esc_html(get_the_title()) ?></h5>
             <p><?php echo wp_trim_words(wp_strip_all_tags(get_the_content()), 30) ?></p>
-            <?php 
+            <?php
                 $relatedPosts = get_field("related_post");
                 if($relatedPosts) {
                     ?>
@@ -33,7 +33,8 @@
         </div>
     </div>
     <?php
+        }
+
         wp_reset_postdata();
         return ob_get_clean();
-            }
     }

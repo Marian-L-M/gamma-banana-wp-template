@@ -11,14 +11,34 @@
 if(!defined('ABSPATH')) exit;
 
 require_once plugin_dir_path(__FILE__) . 'inc/generate-featured-post.php';
+require_once plugin_dir_path(__FILE__) . 'inc/related-posts.php';
 
 class LeFeaturedBlock {
     public function __construct() {
         add_action("init", [$this, 'adminAssets']);
         add_action("rest_api_init", [$this, 'featuredHTML']);
+        add_filter('the_content', [$this, "addRelatedPosts"]);
+    }
+
+    public function addRelatedPosts($content) {
+        $allowedPostTypes = ['roadmap', 'projects', 'features', 'post', 'guides', "wikis", "notes"];
+        if(is_singular($allowedPostTypes) && in_the_loop() && is_main_query()) {
+            return $content . relatedPostsHTML(get_the_id());
+        }
+        return $content;
     }
 
     public function adminAssets() {
+        $allowedPostTypes = ['roadmap', 'projects', 'features', 'post', 'guides', "wikis", "notes"];
+
+        foreach($allowedPostTypes as $postType) {
+            register_meta($postType, "featuredpostmeta", [
+                'show_in_rest' => true,
+                'type' => 'number',
+                'single' => false
+            ]);
+        }
+
         register_block_type(__DIR__, [
             "render_callback" => [$this, 'renderCallback'],
         ]);
@@ -41,7 +61,7 @@ class LeFeaturedBlock {
         
     }
     public function getFeaturedHTML($data) {
-        return generateFeaturedPostHTML($data["postID"]);
+        return generateFeaturedPostHTML($data["postId"]);
     }
 }
 
