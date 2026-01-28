@@ -9,6 +9,12 @@ error_log
 !/plugins/test-plugin/**
 !/plugins/word-filter
 !/plugins/word-filter/**
+!/plugins/le-quiz-block
+!/plugins/le-quiz-block/**
+!/plugins/le-featured-custom-block
+!/plugins/le-featured-custom-block/**
+!/plugins/glossary-maker
+!/plugins/glossary-maker/**
 /uploads
 /upgrade
 /languages

@@ -5,6 +5,7 @@
     "title": "Le Quiz Block",
     "editorStyle": "file:./build/index.css",
     "editorScript": "file:./build/index.js",
+    "script": [ "file:./build/script.css", "frontend-shared-script" ],
     "style": [ "file:./build/style.css", "frontend-shared-style" ],
     "viewScript": [ "file:./build/frontend.js", "frontend-shared-view-script" ],
     "viewStyle": [ "file:./build/frontend.css", "frontend-view-style" ]
